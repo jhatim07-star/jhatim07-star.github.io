@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MyStore | Product Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    :root {
+      --primary: #1e90ff;
+      --dark: #111;
+      --light: #f4f4f4;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--light);
+      scroll-behavior: smooth;
+    }
+
+    /* HEADER */
+    header {
+      background-color: var(--dark);
+      color: #fff;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(to right, var(--primary), #00bfff);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 40px 20px;
+    }
+
+    /* PRODUCT */
+    .product {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .image-gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .image-gallery img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .thumbnails {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .thumbnails img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 5px;
+      border: 2px solid #ddd;
+      cursor: pointer;
+    }
+
+    .thumbnails img:hover {
+      border-color: var(--primary);
+    }
+
+    .product-details {
+      flex: 1;
+    }
+
+    .price {
+      font-size: 24px;
+      color: var(--primary);
+      margin: 15px 0;
+    }
+
+    button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #187bcd;
+    }
+
+    /* CONTACT */
+    #contact p {
+      margin: 5px 0;
+    }
+
+    /* TEXT US */
+    fieldset {
+      max-width: 600px;
+      margin: 0 auto 60px;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: #fff;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 10px;
+      font-size: 14px;
+      resize: vertical;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--dark);
+      color: white;
+    }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 10px;
+    }
+
+    .close,
+    .nav-btn {
+      position: absolute;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .close {
+      top: 20px;
+      right: 30px;
+      font-size: 30px;
+    }
+
+    .nav-btn {
+      top: 50%;
+      font-size: 40px;
+    }
+
+    .prev { left: 30px; }
+    .next { right: 30px; }
+
+    @media (max-width: 768px) {
+      .product {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .image-gallery {
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>MyStore</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <h2>Best Product of the Year</h2>
+  <p>High quality • Affordable • Reliable</p>
+</section>
+
+<!-- PRODUCTS -->
+<section class="container" id="products">
+  <div class="product">
+
+    <div class="image-gallery">
+      <img src="hodiephoto.jpg.webp" alt="Product image" onclick="openGallery(0)">
+      <div class="thumbnails">
+        <img src="hodiephoto.jpg.webp" onclick="openGallery(0)">
+        <img src="MenS.jpg" onclick="openGallery(1)">
+        <img src="https://via.placeholder.com/400/000000" onclick="openGallery(2)">
+      </div>
+    </div>
+
+    <div class="product-details">
+      <h3>Smart Headphones</h3>
+      <p>
+        Experience crystal-clear sound, noise cancellation,
+        long battery life, and a sleek modern design.
+      </p>
+      <div class="price">$99.99</div>
+      <button onclick="buyNow()">Buy Now</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="container" id="contact">
+  <h2>Contact Us</h2>
+  <p>Email: support@mystore.com</p>
+  <p>Phone: +212 675140292</p>
+</section>
+
+<!-- TEXT US -->
+<fieldset>
+  <label for="text">Text Us</label>
+  <textarea
+    id="text"
+    name="text"
+    placeholder="Your opinion matters to us">
+  </textarea>
+</fieldset>
+
+<!-- MODAL -->
+<div class="modal" id="galleryModal">
+  <span class="close" onclick="closeGallery()">&times;</span>
+  <span class="nav-btn prev" onclick="changeImage(-1)">&#10094;</span>
+  <img id="modalImage" alt="Gallery image">
+  <span class="nav-btn next" onclick="changeImage(1)">&#10095;</span>
+</div>
+
+<footer>
+  <p>&copy; 2026 MyStore. All rights reserved.</p>
+</footer>
+
+<script>
+  const images = [
+    "hodiephoto.jpg.webp",
+    "MenS.jpg",
+    "https://via.placeholder.com/400/000000"
+  ];
+
+  let currentIndex = 0;
+
+  function buyNow() {
+    const phone = "212675140292";
+    const msg = "Hello, I want to buy the Smart Headphones.";
+    window.open(
+      `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,
+      "_blank"
+    );
+  }
+
+  function openGallery(index) {
+    currentIndex = index;
+    modalImage.src = images[currentIndex];
+    galleryModal.style.display = "flex";
+  }
+
+  function closeGallery() {
+    galleryModal.style.display = "none";
+  }
+
+  function changeImage(dir) {
+    currentIndex = (currentIndex + dir + images.length) % images.length;
+    modalImage.src = images[currentIndex];
+  }
+
+  galleryModal.addEventListener("click", e => {
+    if (e.target === galleryModal) closeGallery();
+  });
+</script>
+
+</body>
+</html>
