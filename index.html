@@ -12,9 +12,7 @@
       --light: #f4f4f4;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -23,7 +21,6 @@
       scroll-behavior: smooth;
     }
 
-    /* HEADER */
     header {
       background-color: var(--dark);
       color: #fff;
@@ -43,11 +40,8 @@
       font-weight: bold;
     }
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+    nav a:hover { text-decoration: underline; }
 
-    /* HERO */
     .hero {
       background: linear-gradient(to right, var(--primary), #00bfff);
       color: white;
@@ -55,14 +49,12 @@
       padding: 80px 20px;
     }
 
-    /* LAYOUT */
     .container {
       max-width: 1100px;
       margin: auto;
       padding: 40px 20px;
     }
 
-    /* PRODUCT */
     .product {
       display: flex;
       flex-wrap: wrap;
@@ -71,12 +63,6 @@
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    .image-gallery {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
     }
 
     .image-gallery img {
@@ -101,13 +87,9 @@
       cursor: pointer;
     }
 
-    .thumbnails img:hover {
-      border-color: var(--primary);
-    }
+    .thumbnails img:hover { border-color: var(--primary); }
 
-    .product-details {
-      flex: 1;
-    }
+    .product-details { flex: 1; }
 
     .price {
       font-size: 24px;
@@ -125,16 +107,8 @@
       cursor: pointer;
     }
 
-    button:hover {
-      background-color: #187bcd;
-    }
+    button:hover { background-color: #187bcd; }
 
-    /* CONTACT */
-    #contact p {
-      margin: 5px 0;
-    }
-
-    /* TEXT US */
     fieldset {
       max-width: 600px;
       margin: 0 auto 60px;
@@ -149,15 +123,8 @@
       min-height: 120px;
       padding: 10px;
       font-size: 14px;
-      resize: vertical;
     }
 
-    textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-    }
-
-    /* FOOTER */
     footer {
       text-align: center;
       padding: 20px;
@@ -165,7 +132,6 @@
       color: white;
     }
 
-    /* MODAL */
     .modal {
       display: none;
       position: fixed;
@@ -182,8 +148,7 @@
       border-radius: 10px;
     }
 
-    .close,
-    .nav-btn {
+    .close, .nav-btn {
       position: absolute;
       color: white;
       cursor: pointer;
@@ -203,17 +168,6 @@
 
     .prev { left: 30px; }
     .next { right: 30px; }
-
-    @media (max-width: 768px) {
-      .product {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .image-gallery {
-        align-items: center;
-      }
-    }
   </style>
 </head>
 
@@ -233,12 +187,11 @@
   <p>High quality • Affordable • Reliable</p>
 </section>
 
-<!-- PRODUCTS -->
 <section class="container" id="products">
   <div class="product">
 
     <div class="image-gallery">
-      <img src="hodiephoto.jpg.webp" alt="Product image" onclick="openGallery(0)">
+      <img src="hodiephoto.jpg.webp" onclick="openGallery(0)">
       <div class="thumbnails">
         <img src="hodiephoto.jpg.webp" onclick="openGallery(0)">
         <img src="MenS.jpg" onclick="openGallery(1)">
@@ -248,10 +201,7 @@
 
     <div class="product-details">
       <h3>Smart Headphones</h3>
-      <p>
-        Experience crystal-clear sound, noise cancellation,
-        long battery life, and a sleek modern design.
-      </p>
+      <p>Experience crystal-clear sound, noise cancellation and modern design.</p>
       <div class="price">$99.99</div>
       <button onclick="buyNow()">Buy Now</button>
     </div>
@@ -259,43 +209,36 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="container" id="contact">
   <h2>Contact Us</h2>
   <p>Email: support@mystore.com</p>
   <p>Phone: +212 675140292</p>
 </section>
 
-<!-- TEXT US -->
 <fieldset>
-  <label for="text">Text Us</label>
-  <textarea
-    id="text"
-    name="text"
-    placeholder="Your opinion matters to us">
-  </textarea>
-  <div style="margin-top:15px; display:flex; gap:15px;">
-  <button type="button" onclick="sendMessage()">Send</button>
-  <button type="button" onclick="deleteMessage()" style="background:#ff4d4d;">
-    Delete
-  </button>
-</div>
-
+  <label>Text Us</label>
+  <textarea id="text" placeholder="Your opinion matters to us"></textarea>
+  <div style="margin-top:15px;display:flex;gap:15px;">
+    <button onclick="sendMessage()">Send</button>
+    <button onclick="deleteMessage()" style="background:#ff4d4d;">Delete</button>
+  </div>
 </fieldset>
 
-<!-- MODAL -->
 <div class="modal" id="galleryModal">
   <span class="close" onclick="closeGallery()">&times;</span>
   <span class="nav-btn prev" onclick="changeImage(-1)">&#10094;</span>
-  <img id="modalImage" alt="Gallery image">
+  <img id="modalImage">
   <span class="nav-btn next" onclick="changeImage(1)">&#10095;</span>
 </div>
 
 <footer>
-  <p>&copy; 2026 MyStore. All rights reserved.</p>
+  <p>&copy; 2026 MyStore</p>
 </footer>
 
 <script>
+  const galleryModal = document.getElementById("galleryModal");
+  const modalImage = document.getElementById("modalImage");
+
   const images = [
     "hodiephoto.jpg.webp",
     "MenS.jpg",
@@ -307,10 +250,7 @@
   function buyNow() {
     const phone = "212675140292";
     const msg = "Hello, I want to buy the Smart Headphones.";
-    window.open(
-      `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,
-      "_blank"
-    );
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`);
   }
 
   function openGallery(index) {
@@ -328,30 +268,20 @@
     modalImage.src = images[currentIndex];
   }
 
-  galleryModal.addEventListener("click", e => {
+  galleryModal.onclick = e => {
     if (e.target === galleryModal) closeGallery();
-  });
+  };
 
   function sendMessage() {
     const message = document.getElementById("text").value;
-
-    if (message.trim() === "") {
-      alert("Please write a message first.");
-      return;
-    }
-
-    const email = "jhatim07@gmail.com"; // change ur email
-    const subject = "New message from MyStore website";
-    const body = encodeURIComponent(message);
-
-    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    if (!message.trim()) return alert("Write a message first");
+    window.location.href =
+      `mailto:jhatim07@gmail.com?subject=New message&body=${encodeURIComponent(message)}`;
   }
 
   function deleteMessage() {
     document.getElementById("text").value = "";
   }
-
-
 </script>
 
 </body>
